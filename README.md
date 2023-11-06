@@ -25,9 +25,7 @@ We can't choose one of them without informations about the number of rows/column
 
 We, at least, need to either the rows or the columns of the matrix we would have as the result, this the third argument of the function.
 
-I raealised that the algorithme doesn't work with matrices of differente size :
 
-![Alt text](do_not_work.png)
 
 <h3><ins>Step 1 : Extract the rows from mat1</ins></h3>
 
