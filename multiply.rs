@@ -1,39 +1,46 @@
 fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
 
     // the result is stored here
-    let mut result_mat: Vec<i32> = Vec::new();
+    let mut mat_result: Vec<i32> = Vec::new();
 
-    // we nned to segment mat1 and mat2 in order use them 
-    // as matrices.
+    // We need to segment mat1 and mat2 in order to use 
+    // them as matrices.
 
-    // the number of column of the matrix as the result
-    // is given in the function
+    // The number of columns of the matrix as the result 
+    // is given in the function.
 
     // We have 2 clues about the relathionship
     // between the matrix as the result and mat1 and mat2 :
-    // 1: the number of column of mat2 is equal to the
-    //    number of column of the matrix as the result
-
-    // 2: the number of rows of mat1 is equal to the
+    // 1: the number of rows of mat1 is equal to the
     //    number of rows of the matrix as the result
+
+    // 2: the number of columns of mat2 is equal to the
+    //    number of column of the matrix as the result
 
     // We have 1 clue about the relathionship
     // between mat1 and mat2 :
-    // 1: the number of rows of mat2 is equal to 
-    //    the number of columns of mat1 
+    // 1: the number of rows of mat1 is equal to 
+    //    the number of columns of mat2
 
+    // We have 1 clue about the  :
+    // the column of a matrix is equal to the lenght 
+    // of the vector divided by the rows, the 
+    // inverse is true too.
+
+    // we can have the number of row of mat2 by dividing it lentgh
+    // by the number of columns of the matrix 
     let divisor_mat2_for_row: usize = mat2.len() / column_result;
-    let divisor_mat1_for_col: usize = mat1.len() / divisor_mat2_for_row;
-    
-    //println!("divisor_mat2_for_row : {:?}", divisor_mat2_for_row);
-    
-    for row in 0..divisor_mat1_for_col {
+    let divisor_mat1_for_row: usize = mat1.len() / divisor_mat2_for_row;
+        
+    for row in 0..divisor_mat1_for_row {
     // for each row of mat1
     
         // extract the row from mat1
         let mut vec_row: Vec<i32> = Vec::new();
+
+        let first_number_row: usize = row * divisor_mat2_for_row;
     
-        for row_mat1 in (row * divisor_mat2_for_row)..((row * divisor_mat2_for_row) + divisor_mat2_for_row) {
+        for row_mat1 in first_number_row..(first_number_row + divisor_mat2_for_row) {
             vec_row.push(mat1[row_mat1]);
         }
             
@@ -41,7 +48,8 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
     
         for col in 0..*column_result {
         // for each collumn of mat2
-    
+            
+            
             // extract the column from mat2
             let mut vec_col: Vec<i32> = Vec::new();
         
@@ -59,12 +67,11 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
                 result += pre_result;
             }
     
-            result_mat.push(result);
+            mat_result.push(result);
         }
     }
     
-    println!("\nresult_mat : {:?}", result_mat);
-    result_mat
+    mat_result
 }
 
 
@@ -75,22 +82,29 @@ fn main() {
     // the matrix as the result must have 3 columns
     let column_result: usize = 3;
     let result1: Vec<i32> = mul(&mat1, &mat2, &column_result);
+    println!("\nresult1 : {:?}", result1);
+
 
     println!("\nTest 2 :");
     let mat1: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
     let mat2: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
-    let column_result: usize = 1;
+    let column_result: usize = 2;
     let result2: Vec<i32> = mul(&mat1, &mat2, &column_result);
+    println!("\nresult2 : {:?}", result2);
+
 
     println!("\nTest 3 :");
     let mat1: Vec<i32> = vec![0, 1, 2, 3];
     let mat2: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
     let column_result: usize = 3;
     let result3: Vec<i32> = mul(&mat1, &mat2, &column_result);
+    println!("\nresult3 : {:?}", result3);
+
 
     println!("\nTest 4 :");
     let mat1: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
     let mat2: Vec<i32> = vec![0, 1, 2, 3];
     let column_result: usize = 2;
     let result4: Vec<i32> = mul(&mat1, &mat2, &column_result);
+    println!("\nresult4 : {:?}", result4);
 }

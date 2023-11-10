@@ -16,18 +16,57 @@ vector2 = $\begin{bmatrix}
 
 If we wanted to manipulate these vectors as matrices, we would have to rearrange them, but there are many ways of doing this:
 
-| | The possibilities :
-| --------------|---------------|
-| possibility1 = $\begin{matrix}[0 & 1 & 2 & 3 & 4 & 5]\end{matrix}$ | possibility2 = $\begin{matrix}[0 &1 & 2\\ 3 & 4 & 5]\end{matrix}$ |
-| possibility3 = $\begin{matrix}[0 & 1\\ 2 & 3\\ 4 & 5]\end{matrix}$ | possibility4 = $\begin{matrix}[0 \\ 1\\ 2 \\ 3\\ 4 \\ 5]\end{matrix}$ |
+possibility1 = $\begin{matrix}[0 & 1 & 2 & 3 & 4 & 5]\end{matrix}$ 
+
+possibility2 = $\begin{matrix}[0 &1 & 2\\ 3 & 4 & 5]\end{matrix}$ 
+
+possibility3 = $\begin{matrix}[0 & 1\\ 2 & 3\\ 4 & 5]\end{matrix}$ 
+
+possibility4 = $\begin{matrix}[0 \\ 1\\ 2 \\ 3\\ 4 \\ 5]\end{matrix}$
 
 We can't choose one of them without informations about the number of rows/columns we want for the result matrix.
 
 We, at least, need to either the rows or the columns of the matrix we would have as the result, this the third argument of the function.
 
+And there is three relation during a multiplication between two matrix we can use :
 
+$$\textrm{\color{green}The number of columns of the second matrix (mat2) is equal to the number of columns of the matrix as the result ;}$$
+$$\textrm{\color{red}The number columns of mat1 is equal to the number of rows of mat2.}$$
+$$\textrm{\color{blue}The number of rows of the first matrix (mat1) is equal to the number or rows of the matrix as the result ;}$$
+
+Here are few exemples :
+
+<p align="center">
+    <img src="images/matrice_rules.png" width="300"/>
+</p>
+
+Since we know the number of $\textrm{\color{green}columns}$ of the matrix as the result because its given as the argument of the function, we can apply the $\textrm{\color{green}first rule}$ in order to find the number of $\textrm{\color{green}columns}$ of mat2 :
+
+```rust
+fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
+```
+
+Since we know the number of $\textrm{\color{green}columns}$ of mat2, we can have the number of $\textrm{\color{red}rows}$ of mat2 by dividing the lenght of mat2 by the number $\textrm{\color{green}columns}$:
+
+```rust
+    let divisor_mat2_for_row: usize = mat2.len() / column_result;
+```
+
+
+Since we know the number of $\textrm{\color{red}rows}$ of mat2, we can use the $\textrm{\color{red}second rule}$ to find the number of $\textrm{\color{red}columns}$ of mat1.
+
+And we can find the number of $\textrm{\color{blue}rows}$ of mat1 by dividing its length by the number of $\textrm{\color{red}columns}$ of mat1:
+
+```rust
+    let divisor_mat1_for_row: usize = mat1.len() / divisor_mat2_for_row;
+```
+
+We can close the circle by using the $\textrm{\color{blue}third rule}$ to find the number of $\textrm{\color{blue}rows}$ of the matrix as the result.
+
+We can start the algorithme with these informations.
 
 <h3><ins>Step 1 : Extract the rows from mat1</ins></h3>
+
 
 <h3><ins>Step 2 : Extract the collumns from mat1</ins></h3>
 <h3><ins>Step : </ins></h3>
