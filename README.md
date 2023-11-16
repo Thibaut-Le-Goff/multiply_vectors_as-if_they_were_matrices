@@ -16,13 +16,21 @@ vector2 = $\begin{bmatrix}
 
 If we wanted to manipulate these vectors as matrices, we would have to rearrange them, but there are many ways of doing this:
 
-possibility1 = $\begin{matrix}[0 & 1 & 2 & 3 & 4 & 5]\end{matrix}$ 
+possibility 1: 
 
-possibility2 = $\begin{matrix}[0 &1 & 2\\ 3 & 4 & 5]\end{matrix}$ 
+$$\begin{matrix}[0 & 1 & 2 & 3 & 4 & 5]\end{matrix}$$
 
-possibility3 = $\begin{matrix}[0 & 1\\ 2 & 3\\ 4 & 5]\end{matrix}$ 
+possibility 2: 
 
-possibility4 = $\begin{matrix}[0 \\ 1\\ 2 \\ 3\\ 4 \\ 5]\end{matrix}$
+$$\begin{matrix}[0 &1 & 2\\ 3 & 4 & 5]\end{matrix}$$
+
+possibility 3: 
+
+$$\begin{matrix}[0 & 1\\ 2 & 3\\ 4 & 5]\end{matrix}$$
+
+possibility 4: 
+
+$$\begin{matrix}[0 \\ 1\\ 2 \\ 3\\ 4 \\ 5]\end{matrix}$$
 
 We can't choose one of them without informations about the number of rows/columns we want for the result matrix.
 
@@ -31,10 +39,12 @@ We, at least, need to either the rows or the columns of the matrix we would have
 And there is three relation during a multiplication between two matrix we can use :
 
 $$\textrm{\color{green}The number of columns of the second matrix (mat2) is equal to the number of columns of the matrix as the result ;}$$
+
 $$\textrm{\color{red}The number columns of mat1 is equal to the number of rows of mat2.}$$
+
 $$\textrm{\color{blue}The number of rows of the first matrix (mat1) is equal to the number or rows of the matrix as the result ;}$$
 
-Here are few exemples :
+Here are few examples:
 
 <p align="center">
     <img src="images/matrice_rules.png" width="300"/>
@@ -46,35 +56,30 @@ Since we know the number of $\textrm{\color{green}columns}$ of the matrix as the
 fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
 ```
 
-Since we know the number of $\textrm{\color{green}columns}$ of mat2, we can have the number of $\textrm{\color{red}rows}$ of mat2 by dividing the lenght of mat2 by the number $\textrm{\color{green}columns}$:
+Since we know the number of $\textrm{\color{green}columns}$ of mat2, we can have the number of $\textrm{\color{red}rows}$ of mat2 by dividing the length of mat2 by the number $\textrm{\color{green}columns}$:
 
 ```rust
-    let divisor_mat2_for_row: usize = mat2.len() / column_result;
+    let number_row_mat2: usize = mat2.len() / column_result;
 ```
-
 
 Since we know the number of $\textrm{\color{red}rows}$ of mat2, we can use the $\textrm{\color{red}second rule}$ to find the number of $\textrm{\color{red}columns}$ of mat1.
 
 And we can find the number of $\textrm{\color{blue}rows}$ of mat1 by dividing its length by the number of $\textrm{\color{red}columns}$ of mat1:
 
 ```rust
-    let divisor_mat1_for_row: usize = mat1.len() / divisor_mat2_for_row;
+    let number_row_mat1: usize = mat1.len() / number_row_mat2;
 ```
 
 We can close the circle by using the $\textrm{\color{blue}third rule}$ to find the number of $\textrm{\color{blue}rows}$ of the matrix as the result.
 
-We can start the algorithme with these informations.
+We can start the algorithm with these informations.
 
-<h3><ins>Step 1 : Extract the rows from mat1</ins></h3>
-
-
-<h3><ins>Step 2 : Extract the collumns from mat1</ins></h3>
-<h3><ins>Step : </ins></h3>
-<h3><ins>Step : </ins></h3>
-<h3><ins>Step : </ins></h3>
+<h3><ins>Step 1 : Extract the row from mat1</ins></h3>
 
 
-$$\begin{bmatrix}
-1 & 2 & 3\\
-a & b & c
-\end{bmatrix}$$
+<h3><ins>Step 2 : Extract the collumn from mat2</ins></h3>
+
+
+<h3><ins>Step 3 : Multiply the row and the collumn</ins></h3>
+
+

@@ -3,54 +3,33 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
     // the result is stored here
     let mut mat_result: Vec<i32> = Vec::new();
 
-    // We need to segment mat1 and mat2 in order to use 
-    // them as matrices.
-
-    // The number of columns of the matrix as the result 
-    // is given in the function.
-
-    // We have 2 clues about the relathionship
-    // between the matrix as the result and mat1 and mat2 :
-    // 1: the number of rows of mat1 is equal to the
-    //    number of rows of the matrix as the result
-
-    // 2: the number of columns of mat2 is equal to the
-    //    number of column of the matrix as the result
-
-    // We have 1 clue about the relathionship
-    // between mat1 and mat2 :
-    // 1: the number of rows of mat1 is equal to 
-    //    the number of columns of mat2
-
-    // We have 1 clue about the  :
-    // the column of a matrix is equal to the lenght 
-    // of the vector divided by the rows, the 
-    // inverse is true too.
-
-    // we can have the number of row of mat2 by dividing it lentgh
-    // by the number of columns of the matrix 
-    let divisor_mat2_for_row: usize = mat2.len() / column_result;
-    let divisor_mat1_for_row: usize = mat1.len() / divisor_mat2_for_row;
+    let number_row_mat2: usize = mat2.len() / column_result;
+    let number_row_mat1: usize = mat1.len() / number_row_mat2;
         
-    for row in 0..divisor_mat1_for_row {
+    for row in 0..number_row_mat1 {
     // for each row of mat1
     
         // extract the row from mat1
         let mut vec_row: Vec<i32> = Vec::new();
 
-        let first_number_row: usize = row * divisor_mat2_for_row;
+        // The number columns of mat1 is equal 
+        // to the number of rows of mat2 :
+        let first_number_row: usize = row * number_row_mat2;
+        let last_number_row: usize = first_number_row + number_row_mat2;
     
-        for row_mat1 in first_number_row..(first_number_row + divisor_mat2_for_row) {
+        for row_mat1 in first_number_row..last_number_row {
             vec_row.push(mat1[row_mat1]);
         }
             
         println!("\nvec_row : {:?}", vec_row);
     
+        // The number of columns of the second matrix (mat2) is  
+        // equal to the number of columns of the matrix as the result :
         for col in 0..*column_result {
         // for each collumn of mat2
             
-            
             // extract the column from mat2
+            /*
             let mut vec_col: Vec<i32> = Vec::new();
         
             for col_mat2 in (col..mat2.len()).step_by(*column_result) {
@@ -58,12 +37,17 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
             }
     
             println!("vec_col : {:?}", vec_col);
-    
+            */
+            
             // multiply vec_row by vec_col
             let mut result: i32 = 0;
     
-            for value in 0..vec_col.len() {
-                let pre_result: i32 = vec_row[value] * vec_col[value];
+            //for value in 0..vec_col.len() {
+            for value in 0..number_row_mat2 { // +
+                let value_mat2: usize = (*column_result * value) + col;// +
+
+                //println!("mat2[value * value_mat2] : {:?}\n", mat2[value_mat2]);
+                let pre_result: i32 = vec_row[value] * mat2[value_mat2];
                 result += pre_result;
             }
     
