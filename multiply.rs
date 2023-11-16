@@ -8,46 +8,19 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
         
     for row in 0..number_row_mat1 {
     // for each row of mat1
-    
-        // extract the row from mat1
-        let mut vec_row: Vec<i32> = Vec::new();
 
-        // The number columns of mat1 is equal 
-        // to the number of rows of mat2 :
-        let first_number_row: usize = row * number_row_mat2;
-        let last_number_row: usize = first_number_row + number_row_mat2;
-    
-        for row_mat1 in first_number_row..last_number_row {
-            vec_row.push(mat1[row_mat1]);
-        }
-            
-        println!("\nvec_row : {:?}", vec_row);
-    
         // The number of columns of the second matrix (mat2) is  
         // equal to the number of columns of the matrix as the result :
         for col in 0..*column_result {
-        // for each collumn of mat2
+        // Multiply the the row of mat1 by the collumn of mat2
             
-            // extract the column from mat2
-            /*
-            let mut vec_col: Vec<i32> = Vec::new();
-        
-            for col_mat2 in (col..mat2.len()).step_by(*column_result) {
-                vec_col.push(mat2[col_mat2]);
-            }
-    
-            println!("vec_col : {:?}", vec_col);
-            */
-            
-            // multiply vec_row by vec_col
             let mut result: i32 = 0;
     
-            //for value in 0..vec_col.len() {
-            for value in 0..number_row_mat2 { // +
-                let value_mat2: usize = (*column_result * value) + col;// +
+            for value in 0..number_row_mat2 {
+                let value_mat2: usize = (*column_result * value) + col;
+                let value_mat1: usize = (number_row_mat2 * row) + value;
 
-                //println!("mat2[value * value_mat2] : {:?}\n", mat2[value_mat2]);
-                let pre_result: i32 = vec_row[value] * mat2[value_mat2];
+                let pre_result: i32 = mat1[value_mat1] * mat2[value_mat2];
                 result += pre_result;
             }
     

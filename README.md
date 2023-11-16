@@ -7,12 +7,14 @@ The motivation behind this is to make the gradient descent methods (from this pr
 <h3><ins>The problem.</ins></h3>
 
 The function created takes two vectors as inputs :\
-vector1 = $\begin{bmatrix}
+
+$$\textrm{vector1} = \begin{bmatrix}
 0 & 1 & 2 & 3 & 4 & 5
-\end{bmatrix}$\
-vector2 = $\begin{bmatrix}
+\end{bmatrix}$$
+
+$$\textrm{vector2} = \begin{bmatrix}
 0 & 1 & 2 & 3 & 4 & 5
-\end{bmatrix}$
+\end{bmatrix}$$
 
 If we wanted to manipulate these vectors as matrices, we would have to rearrange them, but there are many ways of doing this:
 
@@ -26,11 +28,18 @@ $$\begin{matrix}[0 &1 & 2\\ 3 & 4 & 5]\end{matrix}$$
 
 possibility 3: 
 
-$$\begin{matrix}[0 & 1\\ 2 & 3\\ 4 & 5]\end{matrix}$$
+$$\begin{matrix}[0 & 1\\
+2 & 3\\ 
+4 & 5]\end{matrix}$$
 
 possibility 4: 
 
-$$\begin{matrix}[0 \\ 1\\ 2 \\ 3\\ 4 \\ 5]\end{matrix}$$
+$$\begin{matrix}[0 \\ 
+1\\ 
+2\\ 
+3\\ 
+4\\ 
+5]\end{matrix}$$
 
 We can't choose one of them without informations about the number of rows/columns we want for the result matrix.
 
