@@ -6,21 +6,28 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
     let number_row_mat2: usize = mat2.len() / column_result;
     let number_row_mat1: usize = mat1.len() / number_row_mat2;
         
-    for row in 0..number_row_mat1 {
+    for row_mat1 in 0..number_row_mat1 {
     // for each row of mat1
 
         // The number of columns of the second matrix (mat2) is  
         // equal to the number of columns of the matrix as the result :
-        for col in 0..*column_result {
-        // Multiply the the row of mat1 by the collumn of mat2
+        for col_mat2 in 0..*column_result {
+        // for each collumn of mat2
             
             let mut result: i32 = 0;
     
-            for value in 0..number_row_mat2 {
-                let value_mat2: usize = (*column_result * value) + col;
-                let value_mat1: usize = (number_row_mat2 * row) + value;
+            for row_mat2 in 0..number_row_mat2 {
+            // for each row of mat2
 
-                let pre_result: i32 = mat1[value_mat1] * mat2[value_mat2];
+                // The number columns of mat1 is equal
+                // to the number of rows of mat2 :
+                let index_mat1: usize = (number_row_mat2 * row_mat1) + row_mat2;
+
+                // The number of columns of the second matrix (mat2) is equal 
+                // to the number of columns of the matrix as the result :
+                let index_mat2: usize = (*column_result * row_mat2) + col_mat2;
+
+                let pre_result: i32 = mat1[index_mat1] * mat2[index_mat2];
                 result += pre_result;
             }
     

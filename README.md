@@ -6,7 +6,7 @@ The motivation behind this is to make the gradient descent methods (from this pr
 
 <h3><ins>The problem.</ins></h3>
 
-The function created takes two vectors as inputs :\
+The function created takes two vectors as inputs :
 
 $$\textrm{vector1} = \begin{bmatrix}
 0 & 1 & 2 & 3 & 4 & 5
@@ -24,7 +24,8 @@ $$\begin{matrix}[0 & 1 & 2 & 3 & 4 & 5]\end{matrix}$$
 
 possibility 2: 
 
-$$\begin{matrix}[0 &1 & 2\\ 3 & 4 & 5]\end{matrix}$$
+$$\begin{matrix}[0 &1 & 2\\
+3 & 4 & 5]\end{matrix}$$
 
 possibility 3: 
 
@@ -84,11 +85,19 @@ We can close the circle by using the $\textrm{\color{blue}third rule}$ to find t
 We can start the algorithm with these informations.
 
 <h3><ins>Step 1 : Extract the row from mat1</ins></h3>
+The vector mat1 is managed in a sort to extract each rows :
 
+<p align="center">
+    <img src="images/mat1.png" width="350"/>
+</p>
 
 <h3><ins>Step 2 : Extract the collumn from mat2</ins></h3>
+The vector mat2 is managed in a sort to extract each collumns :
 
+<p align="center">
+    <img src="images/mat2.png" width="400"/>
+</p>
 
 <h3><ins>Step 3 : Multiply the row and the collumn</ins></h3>
-
+For each rows of mat2 
 
