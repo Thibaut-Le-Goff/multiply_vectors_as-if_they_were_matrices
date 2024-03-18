@@ -40,21 +40,20 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
 
 
 fn main() {
-    println!("\nTest 1 :");
-    let mat1: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
-    let mat2: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
+    println!("\nlayer 1 :");
+    let weights_1: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
+    let inputs: Vec<i32> = vec![0, 1, 2];
     // the matrix as the result must have 3 columns
-    let column_result: usize = 3;
-    let result1: Vec<i32> = mul(&mat1, &mat2, &column_result);
-    println!("\nresult1 : {:?}", result1);
+    let column_result: usize = 1; // we want to get vector, so with only 1 column
+    let neurones_1: Vec<i32> = mul(&weights_1, &inputs, &column_result);
+    println!("\nNumber at the neurones of the layer 1 : {:?}", neurones_1);
 
 
     println!("\nTest 2 :");
-    let mat1: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
-    let mat2: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
-    let column_result: usize = 2;
-    let result2: Vec<i32> = mul(&mat1, &mat2, &column_result);
-    println!("\nresult2 : {:?}", result2);
+    let weights_2: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
+    let column_result: usize = 1; // we want to get vector, so with only 1 column
+    let neurones_2: Vec<i32> = mul(&weights_2, &neurones_1, &column_result);
+    println!("\nNumber at the neurones of the layer 2 : {:?}", neurones_2);
 
 
     println!("\nTest 3 :");
