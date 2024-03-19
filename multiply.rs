@@ -1,4 +1,5 @@
 fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
+// fn mul(weights_n: &[i32], outputs_n_minus_1: &[i32], default_value_one: &usize) -> Vec<i32> {
 
     // the result is stored here
     let mut mat_result: Vec<i32> = Vec::new();
@@ -36,6 +37,7 @@ fn mul(mat1: &[i32], mat2: &[i32], column_result: &usize) -> Vec<i32> {
     }
     
     mat_result
+    // neuron outputs n
 }
 
 
@@ -49,7 +51,7 @@ fn main() {
     println!("\nNumber at the neurones of the layer 1 : {:?}", neurones_1);
 
 
-    println!("\nTest 2 :");
+    println!("\nlayer 2 :");
     let weights_2: Vec<i32> = vec![0, 1, 2, 3, 4, 5];
     let column_result: usize = 1; // we want to get vector, so with only 1 column
     let neurones_2: Vec<i32> = mul(&weights_2, &neurones_1, &column_result);
