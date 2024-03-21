@@ -3,7 +3,7 @@
 
 //gcc multiply.c && valgrind./a.out
 
-int* mul(int *mat1, int *mat2, int *column_result, int size1, int size2) {
+int* mul(const int *mat1, const int *mat2, const int *column_result, const size_t size1, const size_t size2) {
     int number_row_mat2 = size2 / (*column_result);
 
     int number_row_mat1 = size1 / number_row_mat2;
@@ -20,9 +20,8 @@ int* mul(int *mat1, int *mat2, int *column_result, int size1, int size2) {
         for (int col_mat2 = 0; col_mat2 < *column_result; col_mat2++) {
 
             int result = 0;
-            int row_mat2 = 0;
 
-            for (row_mat2 = 0; row_mat2 < number_row_mat2; row_mat2++) {
+            for (int row_mat2 = 0; row_mat2 < number_row_mat2; row_mat2++) {
 
                 // The number columns of mat1 is equal
                 // to the number of rows of mat2 :
@@ -61,14 +60,12 @@ int main() {
     int *neurones_1 = mul(weights_1, inputs, &column_result, size1, size2);
     //int *neurones_1 = mul(weights_1, inputs, &column_result);
 
-    size_t iteratore_layer_1 = size1 / size2;
+    int iteratore_layer_1 = size1 / size2;
     printf("\nNumber at the neurones of the layer 1 : ");
-    for (size_t i = 0; i < iteratore_layer_1; i++) {
+    for (int i = 0; i < iteratore_layer_1; i++) {
         printf("%d ", neurones_1[i]);
     }
     printf("\n");
-
-
 
     printf("\nlayer 2 :\n");
     int weights_2[] = {0, 1, 2, 3, 4, 5};
@@ -77,52 +74,15 @@ int main() {
     int *neurones_2 = mul(weights_2, neurones_1, &column_result, size3, size4);
     //int *neurones_2 = mul(weights_2, neurones_1, &column_result);
 
-    size_t iteratore_layer_2 = size3 / size4;
+    int iteratore_layer_2 = size3 / size4;
     printf("\nNumber at the neurones of the layer 2 : ");
-    for (size_t i = 0; i < iteratore_layer_2; i++) {
+    for (int i = 0; i < iteratore_layer_2; i++) {
         printf("%d ", neurones_2[i]);
-    }
-    printf("\n");
-
-
-    printf("\nTest 3 :\n");
-    int mat1[] = {0, 1, 2, 3};
-    int mat2[] = {0, 1, 2, 3, 4, 5};
-    int column_result3 = 3;
-    size_t size5 = sizeof(mat1) / sizeof(mat1[0]);
-    size_t size6 = sizeof(mat2) / sizeof(mat2[0]);
-    int *result3 = mul(mat1, mat2, &column_result3, size5, size6);
-    //int *result3 = mul(mat1, mat2, &column_result3);
-
-    size_t iteratore_3 = size6;
-    printf("\nresult3 : ");
-    for (size_t i = 0; i < iteratore_3; i++) {
-        printf("%d ", result3[i]);
-    }
-    printf("\n");
-
-
-    printf("\nTest 4 :\n");
-    int mat3[] = {0, 1, 2, 3, 4, 5};
-    int mat4[] = {0, 1, 2, 3};
-    int column_result4 = 2;
-    size_t size7 = sizeof(mat3) / sizeof(mat3[0]);
-    size_t size8 = sizeof(mat4) / sizeof(mat4[0]);
-    int *result4 = mul(mat3, mat4, &column_result4, size7, size8);
-    //int *result4 = mul(mat3, mat4, &column_result4);
-
-    //size_t iteratore_4 =  (size7 * size8) / column_result4;
-    size_t iteratore_4 = size7;
-    printf("\nresult4 : ");
-    for (size_t i = 0; i < iteratore_4; i++) {
-        printf("%d ", result4[i]);
     }
     printf("\n");
 
     free(neurones_1);
     free(neurones_2);
-    free(result3);
-    free(result4);
 
     return 0;
 }
